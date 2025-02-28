@@ -13,9 +13,9 @@ def insere_cliente(nome_empresa, cnpj,observacao,contato, endereco, status=True)
         return "Não deu certo"
 
 
-def altera_dados_cliente():
+def altera_dados_cliente(coluna, alteracao, id):
     try:
-        cursor.execute(f'''UPDATE CLIENTES SET ''')
+        cursor.execute(f'''UPDATE CLIENTES SET {coluna} = "{alteracao}" WHERE id = {id}''')
         return "Dados do cliente alterados"
     except:
         return "Dados do clientes não alterados"

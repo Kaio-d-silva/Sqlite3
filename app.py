@@ -45,4 +45,6 @@
 
 from services.clientes_services import *
 
-altarar_cadastro()
+status = altarar_cadastro(1)
+print(status)
+# cadastrar_cliente()
