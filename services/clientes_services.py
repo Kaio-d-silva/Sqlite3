@@ -16,17 +16,20 @@ def altarar_cadastro(id):
     colunas = db.cursor.fetchall()
     
     print("Qual dado voce quer alterar:")
+    
     index = 1
     for valor in colunas:
         print(f"{index} {valor[1]}")
         index += 1
     print("")
         
-    escolha = int(input(" "))
+    escolha = int(input(""))
     alteracao = input("Escreva o novo valor do dado : ")
-    coluna = colunas[escolha]
+    coluna = colunas[escolha-1]
     
-    resposta = db.altera_dados_cliente(coluna, alteracao, id)
+    resposta = db.altera_dados_cliente(nome_tabela,coluna, alteracao, id)
     return resposta
 
 
+def exibe_mensagem():
+    pass
