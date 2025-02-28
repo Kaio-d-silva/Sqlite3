@@ -24,7 +24,7 @@ def altarar_cadastro(id):
         
     escolha = int(input(" "))
     alteracao = input("Escreva o novo valor do dado : ")
-    coluna = colunas[escolha+1]
+    coluna = colunas[escolha]
     
     resposta = db.altera_dados_cliente(coluna, alteracao, id)
     return resposta
