@@ -9,3 +9,21 @@ def cadastrar_cliente():
     resposta = db.insere_cliente(nome_empresa, cnpj,observacao,contato, endereco)
     return resposta
 
+def altarar_cadastro():
+    
+    nome_tabela = 'cliente'
+    db.cursor.execute(f"PRAGMA table_info({nome_tabela});")
+    colunas = db.cursor.fetchall()
+    
+    print("Qual dado voce quer alterar:")
+    index = 1
+    for valor in colunas:
+        print(f"{index} {valor[1]}")
+        index += 1
+    print("")
+        
+    
+    # resposta = db.altera_dados_cliente()
+    # return resposta
+
+

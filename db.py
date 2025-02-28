@@ -11,3 +11,13 @@ def insere_cliente(nome_empresa, cnpj,observacao,contato, endereco, status=True)
         return "Cliente inserido com sucesso"
     except:
         return "Não deu certo"
+
+
+def altera_dados_cliente():
+    try:
+        cursor.execute(f'''UPDATE CLIENTES SET ''')
+        return "Dados do cliente alterados"
+    except:
+        return "Dados do clientes não alterados"
+    
+    

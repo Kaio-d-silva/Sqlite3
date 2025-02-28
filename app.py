@@ -1,27 +1,48 @@
+# from services.clientes_services import cadastrar_cliente,altarar_cadastro
+
+
+# status = cadastrar_cliente()
+# altarar_cadastro()
+
+
 # import sqlite3
-# 
-# conexao = sqlite3.connect('banco.db')
 
-# cursor = conexao.cursor()
-# cursor.execute('''CREATE TABLE cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nome_empresa text, cnpj text, observacao text, status boolean, contato varchar, endereco text );''')
-# cursor.execute('''CREATE TABLE compromisso (id int primary key, id_cliente, data text, horario text, observacao text, status boolean, foreign key (id_cliente) references cliente(id) on delete cascade );''')
-# cursor.execute('''CREATE TABLE contas_a_receber (id int primary key,valor_a_pagar text, data_lancamento text,data_vencimento text, observacao text, id_cliente, foreign key (id_cliente) references cliente(id) on delete cascade )''')
+# conn = sqlite3.connect('banco.db')
+
+# cursor = conn.cursor()
 
 
-# cursor.execute(''' INSERT INTO cliente (nome, idade) VALUES ('Nome Falso', '25')''')
-# cursor.execute('''DROP TABLE cliente''')
-# conexao.commit()
-
-# cursor.execute('''SELECT * from cliente''')
+# cursor.execute('''SELECT sql FROM sqlite_master WHERE type='clientes';''')
 
 # rows = cursor.fetchall()
 # for row in rows:
+#     print("teste")
 #     print(row)
 
+# import sqlite3
 
-from services.clientes_services import cadastrar_cliente
+# # Conectando ao banco de dados SQLite
+# conexao = sqlite3.connect('banco.db')
 
+# # Criando um cursor para executar comandos
+# cursor = conexao.cursor()
 
-status = cadastrar_cliente()
+# # Nome da tabela da qual você deseja listar as colunas
+# nome_tabela = 'cliente'
 
-print(status)
+# # Executando o comando PRAGMA para obter informações sobre a tabela
+# cursor.execute(f"PRAGMA table_info({nome_tabela});")
+
+# # Obtendo os resultados
+# colunas = cursor.fetchall()
+
+# # Imprimindo o nome das colunas
+# for coluna in colunas:
+#     print(coluna[1])  # A segunda posição contém o nome da coluna
+
+# # Fechando a conexão
+# conexao.close()
+
+from services.clientes_services import *
+
+altarar_cadastro()
