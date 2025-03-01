@@ -34,7 +34,6 @@ def exibir_mensagem(colunas):
 
     index = 1
     for valor in colunas:
-        # print(valor)
         print(f"{index} {valor[1]}")
         index += 1
     print("")
