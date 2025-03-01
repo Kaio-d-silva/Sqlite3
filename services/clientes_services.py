@@ -15,21 +15,27 @@ def altarar_cadastro(id):
     db.cursor.execute(f"PRAGMA table_info({nome_tabela});")
     colunas = db.cursor.fetchall()
     
-    print("Qual dado voce quer alterar:")
-    
-    index = 1
-    for valor in colunas:
-        print(f"{index} {valor[1]}")
-        index += 1
-    print("")
-        
+    exibir_mensagem()
+
     escolha = int(input(""))
     alteracao = input("Escreva o novo valor do dado : ")
+    
     coluna = colunas[escolha-1]
     
     resposta = db.altera_dados_cliente(nome_tabela,coluna, alteracao, id)
     return resposta
 
 
-def exibe_mensagem():
-    pass
+def exibir_mensagem(colunas):
+    
+    print("Qual dado voce quer alterar:")
+    index = 1
+    for valor in colunas:
+        # print(valor)
+        print(f"{index} {valor[1]}")
+        index += 1
+    print("")
+    
+
+    
+    
