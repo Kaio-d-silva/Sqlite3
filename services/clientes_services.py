@@ -23,11 +23,12 @@ def altarar_cadastro(id):
     print(50*"-")
     
     coluna = colunas[escolha-1]
+    nome_coluna = coluna[1]
     
-    resposta = db.altera_dados_cliente(nome_tabela,coluna, alteracao, id)
+    resposta = db.altera_dados_cliente(nome_tabela,nome_coluna, alteracao, id)
     return resposta
 
-
+#  Mensagem referente a alteração do cadastro
 def exibir_mensagem(colunas):
     # Retira a coluna ID, ela nao pode ser alterada
     colunas.pop(0)
@@ -47,4 +48,10 @@ def listar_clientes(*nome_coluna):
     return resposta
     
     
-    
+def inativar_cliente(id):
+    nome_tabela = "cliente"
+    coluna = "status"
+    alteracao = False
+    resposta = db.altera_dados_cliente(nome_tabela,coluna, alteracao, id)
+    return resposta
+

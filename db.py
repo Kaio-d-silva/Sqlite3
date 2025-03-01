@@ -13,14 +13,14 @@ def insere_cliente(nome_empresa, cnpj,observacao,contato, endereco, status=True)
         return "Não deu certo"
 
 
-def altera_dados_cliente(tabela, coluna, alteracao, id):
+def altera_dados_cliente(tabela, nome_coluna, alteracao, id):
     try:
         # print(f"UPDATE CLIENTES SET {coluna[1]} = '{alteracao}' WHERE id = {id}")
-        cursor.execute(f'''UPDATE {tabela} SET {coluna[1]} = '{alteracao}' WHERE id = {id}''')
+        cursor.execute(f'''UPDATE {tabela} SET {nome_coluna} = '{alteracao}' WHERE id = {id}''')
         conn.commit()
         return "Dados do cliente alterados"
-    except:
-        return "Dados do clientes não alterados"
+    except Exception as e:
+        return f"Dados do clientes não alterados : {e}"
     
     
 def lista_clientes(colunas_select):
