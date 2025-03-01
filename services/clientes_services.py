@@ -12,13 +12,15 @@ def cadastrar_cliente():
 def altarar_cadastro(id):
     
     nome_tabela = 'cliente'
+    
     db.cursor.execute(f"PRAGMA table_info({nome_tabela});")
     colunas = db.cursor.fetchall()
     
-    exibir_mensagem()
-
-    escolha = int(input(""))
+    print(50*"-")
+    exibir_mensagem(colunas)
+    escolha = int(input("Qual dado voce quer alterar : "))
     alteracao = input("Escreva o novo valor do dado : ")
+    print(50*"-")
     
     coluna = colunas[escolha-1]
     
@@ -27,8 +29,9 @@ def altarar_cadastro(id):
 
 
 def exibir_mensagem(colunas):
-    
-    print("Qual dado voce quer alterar:")
+    # Retira a coluna ID, ela nao pode ser alterada
+    colunas.pop(0)
+
     index = 1
     for valor in colunas:
         # print(valor)
