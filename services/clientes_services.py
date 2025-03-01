@@ -38,6 +38,13 @@ def exibir_mensagem(colunas):
         index += 1
     print("")
     
-
+def listar_clientes(*nome_coluna):
+    '''Escolha as colunas que deseja filtra ou use " * " para ter todos os dados. Não use " * " e colunas no mesmo argumento'''
+    
+    valor_de_busca = ",".join(nome_coluna)
+    print(valor_de_busca)
+    resposta = db.lista_clientes(valor_de_busca)
+    return resposta
+    
     
     
