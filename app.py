@@ -45,6 +45,6 @@
 
 from services.clientes_services import *
 
-status = altarar_cadastro(1)
+status = listar_clientes("observacao", "cnpj")
 print(status)
 # cadastrar_cliente()
