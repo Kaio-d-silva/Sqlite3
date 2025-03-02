@@ -9,22 +9,25 @@ def cadastrar_cliente():
     resposta = db.insere_cliente(nome_empresa, cnpj,observacao,contato, endereco)
     return resposta
 
-def altarar_cadastro(id):
-    
+def alterar_cadastro(id, coluna=None, alteracao=None):
+    '''Você pode passar somente o ID do cliente e vizualizar uma tela com as opções de coluna, ou pode passar a coluna e alteração como argumento'''
     nome_tabela = 'cliente'
     
+    # Pega dados das tabelas
     db.cursor.execute(f"PRAGMA table_info({nome_tabela});")
     colunas = db.cursor.fetchall()
     
-    print(50*"-")
-    exibir_mensagem(colunas)
-    escolha = int(input("Qual dado voce quer alterar : "))
-    alteracao = input("Escreva o novo valor do dado : ")
-    print(50*"-")
+    if coluna == None:
+        print(50*"-")
+        exibir_mensagem(colunas)
+        escolha = int(input("Qual dado voce quer alterar : "))
+        alteracao = input("Escreva o novo valor do dado : ")
+        print(50*"-")
     
-    coluna = colunas[escolha-1]
-    nome_coluna = coluna[1]
-    
+        dados_coluna = colunas[escolha-1]
+        nome_coluna = dados_coluna[1] 
+    else:
+        nome_coluna = coluna
     resposta = db.altera_dados_cliente(nome_tabela,nome_coluna, alteracao, id)
     return resposta
 
@@ -49,9 +52,8 @@ def listar_clientes(*nome_coluna):
     
     
 def inativar_cliente(id):
-    nome_tabela = "cliente"
     coluna = "status"
     alteracao = False
-    resposta = db.altera_dados_cliente(nome_tabela,coluna, alteracao, id)
+    resposta = alterar_cadastro(id, coluna=coluna, alteracao=alteracao)
     return resposta
 

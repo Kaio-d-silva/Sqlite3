@@ -13,10 +13,9 @@ def insere_cliente(nome_empresa, cnpj,observacao,contato, endereco, status=True)
         return "Não deu certo"
 
 
-def altera_dados_cliente(tabela, nome_coluna, alteracao, id):
+def altera_dados_cliente(nome_tabela, nome_coluna, alteracao, id):
     try:
-        # print(f"UPDATE CLIENTES SET {coluna[1]} = '{alteracao}' WHERE id = {id}")
-        cursor.execute(f'''UPDATE {tabela} SET {nome_coluna} = '{alteracao}' WHERE id = {id}''')
+        cursor.execute(f'''UPDATE {nome_tabela} SET {nome_coluna} = '{alteracao}' WHERE id = {id}''')
         conn.commit()
         return "Dados do cliente alterados"
     except Exception as e:
