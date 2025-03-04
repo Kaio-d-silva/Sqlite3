@@ -1,4 +1,5 @@
 from services.clientes_services import *
+from auxiliares.auxiliares import marcacao_linha
 
 def menu_opcoes():
     # tabelas = ["Clientes", "Agenda Compromisso","Contas a Receber" ]
@@ -18,9 +19,10 @@ def menu_opcoes():
         
 
             
-    tabela_selecionada = input("Numero escolido : ")
-    analisa_escolha(tabela_selecionada)
-        
+    tabela_selecionada = int(input("Numero escolido : "))
+    marcacao_linha()
+    analisa_escolha(tabelas,tabela_selecionada)
+    
     status = ""
     return status
 
@@ -29,7 +31,10 @@ def analisa_escolha(tabelas,escolha):
         match escolha:
             case 1: # Clientes
                 opcoes_cliente()
-                
+            case _:
+                print("não foi")
+    else:
+        print("caiu no else")
 def opcoes_cliente():
     funcoes_cliente = {
         1 :"cadastrar_cliente",
@@ -44,11 +49,17 @@ def opcoes_cliente():
         nome_funcao = funcoes_cliente[funcao].replace("_"," ")
         print(f"{numero} {nome_funcao}")
     
-    funcao_escolhida = input("Escolha o numero da função : ")
-    
+    funcao_escolhida = int(input("Escolha o numero da função : "))
+    marcacao_linha()
     match funcao_escolhida:
         case 1: # Cadastro cliente
             cadastrar_cliente()
-            
+        case 2: #Alterar cadastro
+            alterar_cadastro()
+        case 3: #Listar clientes
+            listar_clientes()
+        case 4: #Inativar cliente
+            inativar_cliente()
+        
             
     
