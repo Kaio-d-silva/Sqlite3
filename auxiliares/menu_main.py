@@ -1,5 +1,5 @@
 from services.clientes_services import *
-from auxiliares.auxiliares import marcacao_linha
+from auxiliares.auxiliares import marcacao_linha, lista_opcoes
 
 def menu_opcoes():
     # tabelas = ["Clientes", "Agenda Compromisso","Contas a Receber" ]
@@ -12,29 +12,28 @@ def menu_opcoes():
     
     
     print("Oque deseja acessar ?")
-    for tabela in tabelas:
-        numero = tabela
-        nome_tabela = tabelas[tabela]
-        print(f"{numero} {nome_tabela}")
-        
-
-            
+    lista_opcoes(tabelas)
+    
     tabela_selecionada = int(input("Numero escolido : "))
     marcacao_linha()
-    analisa_escolha(tabelas,tabela_selecionada)
-    
-    status = ""
-    return status
+    resposta =  analisa_escolha(tabelas,tabela_selecionada)
+    return resposta
 
 def analisa_escolha(tabelas,escolha):
     if escolha in tabelas:
         match escolha:
             case 1: # Clientes
-                opcoes_cliente()
-            case _:
-                print("não foi")
+                resposta = opcoes_cliente()
+            case 2: # Agenda Compromisso
+                resposta = opcoes_agenda_compromisso()
+            case 3: # Contas a Receber
+                resposta = opcoes_contas_a_receber()
+        
+        return resposta
     else:
-        print("caiu no else")
+        return "Escolha não permitida"
+        
+        
 def opcoes_cliente():
     funcoes_cliente = {
         1 :"cadastrar_cliente",
@@ -44,22 +43,30 @@ def opcoes_cliente():
     }
     
     print("Oque deseja fazer : ")
-    for funcao in funcoes_cliente:
-        numero = funcao
-        nome_funcao = funcoes_cliente[funcao].replace("_"," ")
-        print(f"{numero} {nome_funcao}")
+    lista_opcoes(funcoes_cliente)
     
     funcao_escolhida = int(input("Escolha o numero da função : "))
     marcacao_linha()
     match funcao_escolhida:
         case 1: # Cadastro cliente
-            cadastrar_cliente()
+            resposta = cadastrar_cliente()
         case 2: #Alterar cadastro
-            alterar_cadastro()
+            cliente_id = int(input("Qual o ID do cliente : "))
+            resposta = alterar_cadastro(cliente_id)
         case 3: #Listar clientes
-            listar_clientes()
+            # Colocar logica para ver quais colunas seram alteradas
+            resposta = listar_clientes("*")
         case 4: #Inativar cliente
-            inativar_cliente()
-        
-            
-    
+            cliente_id = int(input("Qual o ID do cliente : "))
+            resposta = inativar_cliente(cliente_id)
+    return resposta        
+
+# Coloque suas funções aqui dentro, e siga o padrão do match case da função "opcoes clientes"
+def opcoes_agenda_compromisso():
+    funcoes_agenda = {
+
+    }            
+def opcoes_contas_a_receber():
+    funcoes_contas_a_receber = {
+
+    }
