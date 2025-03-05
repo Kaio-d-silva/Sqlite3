@@ -32,3 +32,11 @@ def lista_clientes(colunas_select):
         return "Select deu certo"
     except Exception as e:
         return f"Não deu certo : {e}"
+    
+def insere_conta_a_receber(id_cliente,valor_a_pagar, data_lancamento, data_vencimento, observacao):
+    try:
+        cursor.execute(f'''INSERT INTO contas_a_receber (id_cliente,valor_a_pagar, data_lancamento, data_vencimento, observacao) VALUES ({id_cliente},{valor_a_pagar},"{data_lancamento}","{data_vencimento}","{observacao}")''')
+        conn.commit()
+        return f"Conta a receber inserida"
+    except Exception as e:
+        return f"Não deu certo : {e}"

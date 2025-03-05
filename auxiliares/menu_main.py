@@ -1,4 +1,5 @@
 from services.clientes_services import *
+from services.contas_a_receber_services import *
 from auxiliares.auxiliares import marcacao_linha, lista_opcoes
 
 def menu_opcoes():
@@ -66,7 +67,20 @@ def opcoes_agenda_compromisso():
     funcoes_agenda = {
 
     }            
+    
 def opcoes_contas_a_receber():
     funcoes_contas_a_receber = {
-
+        1:"lancar_conta_a_receber"
     }
+    
+    print("Oque deseja fazer : ")
+    lista_opcoes(funcoes_contas_a_receber)
+    
+    funcao_escolhida = int(input("Escolha o numero da função : "))
+    marcacao_linha()
+    match funcao_escolhida:
+        case 1: # Lancar conta a receber
+            resposta = lancar_conta_a_receber()
+    return resposta    
+    
+    
