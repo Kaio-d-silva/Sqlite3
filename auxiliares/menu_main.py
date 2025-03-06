@@ -70,7 +70,10 @@ def opcoes_agenda_compromisso():
     
 def opcoes_contas_a_receber():
     funcoes_contas_a_receber = {
-        1:"lancar_conta_a_receber"
+        1:"lancar_conta_a_receber",
+        2:"alterar_lancamento",
+        3:"exibir_lancamentos",
+        4:"inativar_lancamento"
     }
     
     print("Oque deseja fazer : ")
@@ -81,6 +84,16 @@ def opcoes_contas_a_receber():
     match funcao_escolhida:
         case 1: # Lancar conta a receber
             resposta = lancar_conta_a_receber()
+        case 2: # alterar_lancamento
+            lancamento_id = int(input("Qual o ID do lancamento : "))
+            resposta = alterar_lancamento(lancamento_id)
+        case 3: # listar_lancamentos
+            resposta = listar_lancamentos("*")
+        case 4: # Inativar lançamento
+            lancamento_id = int(input("Qual o ID do lancamento : "))
+            resposta = inativar_lancamento(lancamento_id)
+
+            
     return resposta    
     
     

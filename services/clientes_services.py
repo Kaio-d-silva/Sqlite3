@@ -28,7 +28,7 @@ def alterar_cadastro(id, coluna=None, alteracao=None):
         nome_coluna = dados_coluna[1] 
     else:
         nome_coluna = coluna
-    resposta = db.altera_dados_cliente(nome_tabela,nome_coluna, alteracao, id)
+    resposta = db.altera_dados(nome_tabela,nome_coluna, alteracao, id)
     return resposta
 
 #  Mensagem referente a alteração do cadastro
@@ -46,7 +46,7 @@ def listar_clientes(*nome_coluna):
     '''Escolha as colunas que deseja filtrar ou use " * " para ter todos os dados. Não use " * " e colunas no mesmo argumento'''
     
     valor_de_busca = ",".join(nome_coluna)
-    resposta = db.lista_clientes(valor_de_busca)
+    resposta = db.listar_dados(valor_de_busca, "cliente")
     return resposta
     
     
