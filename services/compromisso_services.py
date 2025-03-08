@@ -1,10 +1,33 @@
 import db
 
 def cadastrar_compromisso():
-    nome_empresa = input("Digite o nome_empresa: ") 
-    cnpj = input("Digite o cnpj: ")
-    observacao = input("Digite a observacao: ")
-    contato = input("Digite o contato: ")
-    endereco = input("Digite o endereco: ")
-    resposta = db.insere_cliente(nome_empresa, cnpj,observacao,contato, endereco)
+    data = input("Informe a data do compromisso: ") 
+    horario = input("Informe o horário do compromisso: ")
+    observacao = input("Alguma observação sobre o seu compromisso?: ")
+    status = False
+    resposta = db.insere_cliente(data, horario, observacao, status)
+    return resposta
+
+def alterar_compromisso():
+    data = input("Informe a data do compromisso: ") 
+    horario = input("Informe o horário do compromisso: ")
+    observacao = input("Alguma observação sobre o seu compromisso?: ")
+    status = False
+    resposta = db.insere_cliente(data, horario, observacao, status)
+    return resposta
+
+def exibir_compromisso():
+    data = input("Informe a data do compromisso: ") 
+    horario = input("Informe o horário do compromisso: ")
+    observacao = input("Alguma observação sobre o seu compromisso?: ")
+    status = False
+    resposta = db.insere_cliente(data, horario, observacao, status)
+    return resposta
+
+def ocultar_compromisso():
+    data = input("Informe a data do compromisso: ") 
+    horario = input("Informe o horário do compromisso: ")
+    observacao = input("Alguma observação sobre o seu compromisso?: ")
+    status = False
+    resposta = db.insere_cliente(data, horario, observacao, status)
     return resposta
