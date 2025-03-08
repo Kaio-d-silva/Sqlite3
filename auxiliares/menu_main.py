@@ -27,7 +27,7 @@ def analisa_escolha(tabelas,escolha):
             case 1: # Clientes
                 resposta = opcoes_cliente()
             case 2: # Agenda Compromisso
-                resposta = opcoes_agenda_compromisso()
+                resposta = opcoes_compromisso()
             case 3: # Contas a Receber
                 resposta = opcoes_contas_a_receber()
         
