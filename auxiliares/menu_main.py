@@ -62,25 +62,29 @@ def opcoes_cliente():
         print("****     Escolha uma Opção     ****\n")
         lista_opcoes(funcoes_cliente)
         
-        funcao_escolhida = int(input("Escolha o numero da função : "))
+        funcao_escolhida = input("Escolha o numero da função : ")
         marcacao_linha()
-        match funcao_escolhida:
-            case 1: # Cadastro cliente
-                resposta = cadastrar_cliente()
-            case 2: #Alterar cadastro
-                cliente_id = int(input("Qual o ID do cliente : "))
-                resposta = alterar_cadastro(cliente_id)
-            case 3: #Listar clientes
-                # Colocar logica para ver quais colunas seram alteradas
-                resposta = listar_clientes("*")
-            case 4: #Inativar cliente
-                cliente_id = int(input("Qual o ID do cliente : "))
-                resposta = inativar_cliente(cliente_id)
-            case 5:
-                return "saindo opcoes cadastro"
-        print(resposta)
-        marcacao_linha()
-        input("De um enter para continuar ")
+        try:
+            escolha_formatada = int(funcao_escolhida)
+            match escolha_formatada:
+                case 1: # Cadastro cliente
+                    resposta = cadastrar_cliente()
+                case 2: #Alterar cadastro
+                    cliente_id = int(input("Qual o ID do cliente : "))
+                    resposta = alterar_cadastro(cliente_id)
+                case 3: #Listar clientes
+                    # Colocar logica para ver quais colunas seram alteradas
+                    resposta = listar_clientes("*")
+                case 4: #Inativar cliente
+                    cliente_id = int(input("Qual o ID do cliente : "))
+                    resposta = inativar_cliente(cliente_id)
+                case 5:
+                    return "saindo opcoes cadastro"
+            print(resposta)
+            marcacao_linha()
+            input("De um enter para continuar ")
+        except:
+            pass
         
            
 
