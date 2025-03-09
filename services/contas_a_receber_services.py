@@ -1,5 +1,5 @@
 import db
-
+from auxiliares.auxiliares import marcacao_linha
 def lancar_conta_a_receber():
     cliente_id = int(input("Informe o Id do cliente : "))
     valor_a_pagar = float(input("Valor a pagar : "))
@@ -51,6 +51,7 @@ def listar_lancamentos(*nome_coluna):
     
     valor_de_busca = ",".join(nome_coluna)
     resposta = db.listar_dados(valor_de_busca, "contas_a_receber")
+    marcacao_linha()
     return resposta
 
     
