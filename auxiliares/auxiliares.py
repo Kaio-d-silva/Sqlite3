@@ -1,5 +1,7 @@
+import os
+
 def marcacao_linha():
-    print(50 * "-")
+    print(40 * "-")
     
 def lista_opcoes(opcoes):
     for opcao in opcoes:
@@ -7,4 +9,11 @@ def lista_opcoes(opcoes):
         # Caso tenha _ ele retira.
         nome_funcao = opcoes[enumerador].replace("_"," ")
         print(f"{enumerador} {nome_funcao}")
+    print("")
     
+def limpar_terminal():
+    if os.name == "nt":
+        os.system("cls")    
+    else:
+        os.system("clear")
+        
