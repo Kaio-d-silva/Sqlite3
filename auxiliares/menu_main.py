@@ -78,6 +78,7 @@ def opcoes_cliente():
                 return "saindo opcoes cadastro"
         print(resposta)
         marcacao_linha()
+        input("De um enter para continuar ")
         
            
 
@@ -119,5 +120,6 @@ def opcoes_contas_a_receber():
                 return "Saindo opções conta a receber"                
         print(resposta)    
         marcacao_linha()
+        input("De um enter para continuar ")
 
     
