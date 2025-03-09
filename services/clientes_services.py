@@ -1,5 +1,5 @@
 import db
-
+from auxiliares.auxiliares import marcacao_linha
 def cadastrar_cliente():
     nome_empresa = input("Digite o nome_empresa: ") 
     cnpj = input("Digite o cnpj: ")
@@ -7,6 +7,7 @@ def cadastrar_cliente():
     contato = input("Digite o contato: ")
     endereco = input("Digite o endereco: ")
     resposta = db.insere_cliente(nome_empresa, cnpj,observacao,contato, endereco)
+    marcacao_linha()
     return resposta
 
 def alterar_cadastro(id, coluna=None, alteracao=None):
@@ -18,11 +19,11 @@ def alterar_cadastro(id, coluna=None, alteracao=None):
     colunas = db.cursor.fetchall()
     
     if coluna == None:
-        print(50*"-")
+        marcacao_linha()
         exibir_mensagem(colunas)
         escolha = int(input("Qual dado voce quer alterar : "))
         alteracao = input("Escreva o novo valor do dado : ")
-        print(50*"-")
+        marcacao_linha()
     
         dados_coluna = colunas[escolha-1]
         nome_coluna = dados_coluna[1] 
@@ -47,6 +48,7 @@ def listar_clientes(*nome_coluna):
     
     valor_de_busca = ",".join(nome_coluna)
     resposta = db.listar_dados(valor_de_busca, "cliente")
+    marcacao_linha()
     return resposta
     
     
@@ -54,5 +56,6 @@ def inativar_cliente(id):
     coluna = "status"
     alteracao = False
     resposta = alterar_cadastro(id, coluna=coluna, alteracao=alteracao)
+    marcacao_linha()
     return resposta
 
