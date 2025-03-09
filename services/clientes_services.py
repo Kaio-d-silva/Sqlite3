@@ -22,6 +22,7 @@ def alterar_cadastro(id, coluna=None, alteracao=None):
         marcacao_linha()
         exibir_mensagem(colunas)
         escolha = int(input("Qual dado voce quer alterar : "))
+        marcacao_linha()
         alteracao = input("Escreva o novo valor do dado : ")
         marcacao_linha()
     
