@@ -17,7 +17,7 @@ def menu_opcoes():
         print("****     Menu Opções     ****\n")
         lista_opcoes(opcoes)
 
-        opcao_selecionada = int(input("Numero escolido : "))
+        opcao_selecionada = input("Numero escolhido : ")
         marcacao_linha()
         
         resposta =  analisa_escolha(opcoes,opcao_selecionada)
@@ -29,19 +29,21 @@ def menu_opcoes():
     # return resposta
 
 def analisa_escolha(tabelas,escolha):
-    if escolha in tabelas:
-        match escolha:
-            case 1: # Clientes
-                resposta = opcoes_cliente()
-            case 2: # Agenda Compromisso
-                resposta = opcoes_agenda_compromisso()
-            case 3: # Contas a Receber
-                resposta = opcoes_contas_a_receber()
-            case 4: # Sair
-                resposta = "sair"
-        
-        return resposta
-    else:
+    try:
+        escolha_formatada = int(escolha)
+        if escolha_formatada in tabelas:
+            match escolha_formatada:
+                case 1: # Clientes
+                    resposta = opcoes_cliente()
+                case 2: # Agenda Compromisso
+                    resposta = opcoes_agenda_compromisso()
+                case 3: # Contas a Receber
+                    resposta = opcoes_contas_a_receber()
+                case 4: # Sair
+                    resposta = "sair"
+
+            return resposta
+    except:
         marcacao_linha()
         return "Escolha não permitida"
         
