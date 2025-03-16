@@ -48,3 +48,8 @@ def inativar_compromisso():
     alteracao = False
     resposta = alterar_compromisso(coluna=coluna, alteracao=alteracao)
     return resposta
+
+def listar_compromissos():
+    resposta = db.listar_dados("compromisso")
+    marcacao_linha()
+    return resposta
