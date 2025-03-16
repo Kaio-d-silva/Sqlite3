@@ -1,5 +1,6 @@
 import db
 from auxiliares.auxiliares import marcacao_linha
+
 def lancar_conta_a_receber():
     cliente_id = int(input("Informe o Id do cliente : "))
     valor_a_pagar = float(input("Valor a pagar : "))
@@ -13,9 +14,10 @@ def lancar_conta_a_receber():
     resposta = db.insere_conta_a_receber(cliente_id,valor_a_pagar,data_lancamento,data_vencimento,observacao)
     return resposta
 
-def alterar_lancamento(id, coluna=None, alteracao=None):
+def alterar_lancamento(coluna=None, alteracao=None):
     '''Você pode passar somente o ID do cliente e vizualizar uma tela com as opções de coluna, ou pode passar a coluna e alteração como argumento'''
     nome_tabela = 'contas_a_receber'
+    lancamento_id = int(input("Qual o ID do lancamento : "))
     
     # Pega dados das tabelas
     db.cursor.execute(f"PRAGMA table_info({nome_tabela});")
@@ -32,7 +34,7 @@ def alterar_lancamento(id, coluna=None, alteracao=None):
         nome_coluna = dados_coluna[1] 
     else:
         nome_coluna = coluna
-    resposta = db.altera_dados(nome_tabela,nome_coluna, alteracao, id)
+    resposta = db.altera_dados(nome_tabela,nome_coluna, alteracao, lancamento_id)
     return resposta
 
 #  Mensagem referente a alteração do cadastro
@@ -46,17 +48,14 @@ def exibir_mensagem(colunas):
         index += 1
     print("")
     
-def listar_lancamentos(*nome_coluna):
-    '''Escolha as colunas que deseja filtrar ou use " * " para ter todos os dados. Não use " * " e colunas no mesmo argumento'''
-    
-    valor_de_busca = ",".join(nome_coluna)
-    resposta = db.listar_dados(valor_de_busca, "contas_a_receber")
+def listar_lancamentos():
+    resposta = db.listar_dados("contas_a_receber")
     marcacao_linha()
     return resposta
 
     
-def inativar_lancamento(id):
+def inativar_lancamento():
     coluna = "status"
     alteracao = False
-    resposta = alterar_lancamento(id, coluna=coluna, alteracao=alteracao)
+    resposta = alterar_lancamento(coluna=coluna, alteracao=alteracao)
     return resposta
