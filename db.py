@@ -22,9 +22,9 @@ def altera_dados(nome_tabela, nome_coluna, alteracao, id):
         return f"Dados do clientes não alterados : {e}"
     
     
-def listar_dados(colunas_select, nome_tabela):
+def listar_dados(nome_tabela):
     try:
-        cursor.execute(f'''SELECT {colunas_select} FROM {nome_tabela}''')
+        cursor.execute(f'''SELECT * FROM {nome_tabela}''')
         linhas = cursor.fetchall()
         for linha in linhas:
             print(linha)
@@ -33,9 +33,9 @@ def listar_dados(colunas_select, nome_tabela):
     except Exception as e:
         return f"Não deu certo : {e}"
     
-def insere_conta_a_receber(id_cliente,valor_a_pagar, data_lancamento, data_vencimento, observacao):
+def insere_conta_a_receber(id_cliente,valor_a_pagar, data_lancamento, data_vencimento, observacao, status = True):
     try:
-        cursor.execute(f'''INSERT INTO contas_a_receber (id_cliente,valor_a_pagar, data_lancamento, data_vencimento, observacao) VALUES ({id_cliente},{valor_a_pagar},"{data_lancamento}","{data_vencimento}","{observacao}")''')
+        cursor.execute(f'''INSERT INTO contas_a_receber (id_cliente,valor_a_pagar, data_lancamento, data_vencimento, observacao, status) VALUES ({id_cliente},{valor_a_pagar},"{data_lancamento}","{data_vencimento}","{observacao}", "{status}")''')
         conn.commit()
         return f"Conta a receber inserida"
     except Exception as e:
