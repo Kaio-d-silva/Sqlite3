@@ -1,4 +1,5 @@
 from services.clientes_services import *
+from services.compromisso_services import *
 from services.contas_a_receber_services import *
 from auxiliares.auxiliares import marcacao_linha, lista_opcoes, limpar_terminal
 
@@ -36,7 +37,7 @@ def analisa_escolha(tabelas,escolha):
                 case 1: # Clientes
                     resposta = opcoes_cliente()
                 case 2: # Agenda Compromisso
-                    resposta = opcoes_agenda_compromisso()
+                    resposta = opcoes_compromisso()
                 case 3: # Contas a Receber
                     resposta = opcoes_contas_a_receber()
                 case 4: # Sair
@@ -89,11 +90,29 @@ def opcoes_cliente():
            
 
 # Coloque suas funções aqui dentro, e siga o padrão do match case da função "opcoes clientes"
-def opcoes_agenda_compromisso():
-    limpar_terminal()
-    funcoes_agenda = {
+def opcoes_compromisso():
+    funcoes_compromisso = {
+        1:"Cadastrar compromisso",
+        2:"Alterar compromisso",
+        3:"Exibir compromisso",
+        4:"Ocultar compromisso"
+    }
 
-    }            
+    print("O que deseja fazer: ")
+    lista_opcoes(funcoes_compromisso)
+
+    funcao_escolhida = int(input("Escolha uma opção:"))
+    marcacao_linha()
+    match funcao_escolhida:
+        case 1:
+            resposta = cadastrar_compromisso()
+        case 2:
+            resposta = alterar_compromisso()
+        case 3:
+            resposta = exibir_mensagem()
+        case 4:
+            resposta = inativar_compromisso()         
+    return resposta 
     
 def opcoes_contas_a_receber():
     funcoes_contas_a_receber = {

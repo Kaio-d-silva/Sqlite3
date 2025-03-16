@@ -40,3 +40,11 @@ def insere_conta_a_receber(id_cliente,valor_a_pagar, data_lancamento, data_venci
         return f"Conta a receber inserida"
     except Exception as e:
         return f"Não deu certo : {e}"
+    
+def insere_dados_compromisso(cliente_fk, data, horario, observacao, status):
+    try:
+        cursor.execute(f'''INSERT INTO compromisso (id_cliente, data, horario, observacao, status ) VALUES ("{cliente_fk}", "{data}", "{horario}", "{observacao}", "{status}");''')
+        conn.commit()
+        return "Compromisso inserido com sucesso"
+    except:
+        return "Não deu certo"
