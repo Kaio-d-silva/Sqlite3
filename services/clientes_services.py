@@ -10,9 +10,10 @@ def cadastrar_cliente():
     marcacao_linha()
     return resposta
 
-def alterar_cadastro(id, coluna=None, alteracao=None):
+def alterar_cadastro(coluna=None, alteracao=None):
     '''Você pode passar somente o ID do cliente e vizualizar uma tela com as opções de coluna, ou pode passar a coluna e alteração como argumento'''
     nome_tabela = 'cliente'
+    cliente_id = int(input("Qual o ID do cliente : "))
     
     # Pega dados das tabelas
     db.cursor.execute(f"PRAGMA table_info({nome_tabela});")
@@ -30,7 +31,7 @@ def alterar_cadastro(id, coluna=None, alteracao=None):
         nome_coluna = dados_coluna[1] 
     else:
         nome_coluna = coluna
-    resposta = db.altera_dados(nome_tabela,nome_coluna, alteracao, id)
+    resposta = db.altera_dados(nome_tabela,nome_coluna, alteracao, cliente_id)
     return resposta
 
 #  Mensagem referente a alteração do cadastro
@@ -44,19 +45,16 @@ def exibir_mensagem(colunas):
         index += 1
     print("")
     
-def listar_clientes(*nome_coluna):
-    '''Escolha as colunas que deseja filtrar ou use " * " para ter todos os dados. Não use " * " e colunas no mesmo argumento'''
-    
-    valor_de_busca = ",".join(nome_coluna)
-    resposta = db.listar_dados(valor_de_busca, "cliente")
+def listar_clientes():
+    resposta = db.listar_dados("cliente")
     marcacao_linha()
     return resposta
     
     
-def inativar_cliente(id):
+def inativar_cliente():
     coluna = "status"
     alteracao = False
-    resposta = alterar_cadastro(id, coluna=coluna, alteracao=alteracao)
+    resposta = alterar_cadastro(coluna=coluna, alteracao=alteracao)
     marcacao_linha()
     return resposta
 
